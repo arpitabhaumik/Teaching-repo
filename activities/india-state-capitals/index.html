@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f7ff"><title>Find the State Capital | India Map Activity</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#18243a;background:#f4f7ff}*{box-sizing:border-box}body{margin:0}
+header{background:#243b80;color:#fff;padding:22px 18px}header .wrap,main{max-width:1050px;margin:auto}h1{font-size:clamp(1.55rem,4vw,2.2rem);margin:0 0 5px}header p{margin:0;color:#e0e7ff;line-height:1.5}
+main{padding:20px 16px 42px}.layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(245px,.8fr);gap:18px;align-items:start}
+.card{background:white;border:1px solid #dce4f1;border-radius:18px;padding:17px;box-shadow:0 7px 22px #1e293b0b}
+.mapcard{padding:10px}.maphead{padding:8px 8px 3px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.mapbox{width:100%;max-width:620px;margin:0 auto;position:relative}.mapbox svg{display:block;width:100%;height:auto;touch-action:manipulation;cursor:crosshair}
+.mapbg{fill:#f7fbff}.state{fill:#e7edf7;stroke:#71819b;stroke-width:.85;stroke-linejoin:round}.state:hover{fill:#dce7fb}
+.capital{fill:#fff;stroke:#334155;stroke-width:1.2}.guess{fill:#f59e0b;stroke:#92400e;stroke-width:1.6}.correct{fill:#16a34a;stroke:#14532d;stroke-width:1.5}
+.legend{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;color:#526078;font-size:.82rem;padding:7px}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.small{font-size:.88rem;color:#64748b;line-height:1.5}.question{font-size:1.35rem;font-weight:750;margin:8px 0 6px}.state-name{color:#4338ca}
+button,select{font:inherit}button{border:0;border-radius:11px;padding:11px 15px;background:#4338ca;color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button.secondary{background:#e9edfb;color:#28366c}button:focus-visible,select:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.progress{height:9px;background:#e8edf6;border-radius:9px;overflow:hidden;margin:14px 0 5px}.progress span{display:block;height:100%;width:0;background:#6366f1;transition:width .2s}
+#status{min-height:48px;padding:10px 12px;background:#f3f5fb;border-radius:11px;margin-top:12px;color:#334155;line-height:1.45}
+select{padding:9px 10px;border:1px solid #cbd5e1;border-radius:9px;background:white;color:#172033}
+.resulttable{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:14px}.resulttable th,.resulttable td{text-align:left;padding:9px 7px;border-bottom:1px solid #e5eaf2;vertical-align:top}.resulttable th{color:#475569}.resulttable td:last-child{text-align:right}
+#results h2{margin:0 0 6px}.score{font-size:1.7rem;font-weight:800;color:#4338ca;margin:8px 0}
+.source{margin-top:16px;border-top:1px solid #e5eaf2;padding-top:12px;font-size:.78rem;color:#64748b;line-height:1.5}.source a{color:#4338ca}
+.hidden{display:none!important}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.mapcard{order:2}.questioncard{order:1}.mapbox{max-width:540px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Find the State Capital!</h1><p>Look at the map of India. Read the state name, then click where you think its capital city is.</p></div></header>
+<main>
+<section class="layout" id="game">
+ <div class="card mapcard">
+  <div class="maphead"><strong>🗺️ Map of India</strong><span class="small" id="mapstatus">Loading state boundaries…</span></div>
+  <div class="mapbox"><svg id="map" viewBox="0 0 620 700" role="img" aria-label="Interactive map of India with state boundaries"><rect class="mapbg" x="0" y="0" width="620" height="700" rx="12"/><g id="states"></g><g id="marks"></g></svg></div>
+  <div class="legend"><span><i class="dot" style="background:#f59e0b"></i>Your click</span><span><i class="dot" style="background:#16a34a"></i>Correct capital</span></div>
+  <p class="small" style="text-align:center;margin:2px 8px 9px">The map shows state and Union Territory boundaries. Only the 28 states are included in this quiz.</p>
+ </div>
+ <div class="card questioncard">
+  <div class="small" id="roundlabel">10 questions · Practice round</div><div class="progress"><span id="bar"></span></div>
+  <div class="small" id="counter">Question 1 of 10</div>
+  <div class="question">Where is the capital of <span class="state-name" id="state">…</span>?</div>
+  <p class="small">Click the place on the map where you think the capital is. You can take your time!</p>
+  <div id="status" role="status" aria-live="polite">The map is loading. One moment…</div>
+  <div class="controls"><button id="submit" disabled>Check my answer</button><button class="secondary" id="skip" disabled>Skip</button></div>
+  <div class="controls"><label class="small" for="length">Round length</label><select id="length"><option value="10" selected>10 states</option><option value="28">All 28 states</option></select></div>
+  <p class="small">Your click is saved for the results at the end. You can compare each guess with the real capital location.</p>
+ </div>
+</section>
+<section class="card hidden" id="results">
+ <h2>Well done — round complete!</h2><div class="score" id="score"></div><p class="small">Here are your predictions and the actual capital locations. Orange marks show where you clicked; green marks show the correct capital.</p>
+ <div class="controls"><button id="showall">Show all correct capitals on the map</button><button class="secondary" id="again">Play again</button></div>
+ <div style="overflow-x:auto"><table class="resulttable"><thead><tr><th>State</th><th>Your prediction</th><th>Actual capital</th><th>Result</th></tr></thead><tbody id="resultrows"></tbody></table></div>
+</section>
+<div class="source"><strong>Map and learning references:</strong> State-boundary shapes are loaded from the Survey of India / Esri India administrative boundary service (<a href="https://livingatlas.esri.in/server/rest/services/LivingAtlas/IND_AdminBoundary/MapServer/1" target="_blank" rel="noopener">boundary layer details</a>). For an official political-map reference, see the <a href="https://surveyofindia.gov.in/pages/political-map-of-india/1000" target="_blank" rel="noopener">Survey of India map page</a>. Capital names are cross-checked against the Government of India’s Survey of India political map and official references; Andhra Pradesh’s capital is Amaravati. This is a simplified classroom map, not a navigation map.</div>
+</main>
+<script>
+const capitals=[
+["Andhra Pradesh","Amaravati",16.5062,80.6480],["Arunachal Pradesh","Itanagar",27.0844,93.6053],["Assam","Dispur",26.1433,91.7898],["Bihar","Patna",25.5941,85.1376],["Chhattisgarh","Raipur",21.2514,81.6296],["Goa","Panaji",15.4909,73.8278],["Gujarat","Gandhinagar",23.2156,72.6369],["Haryana","Chandigarh",30.7333,76.7794],["Himachal Pradesh","Shimla",31.1048,77.1734],["Jharkhand","Ranchi",23.3441,85.3096],["Karnataka","Bengaluru",12.9716,77.5946],["Kerala","Thiruvananthapuram",8.5241,76.9366],["Madhya Pradesh","Bhopal",23.2599,77.4126],["Maharashtra","Mumbai",19.0760,72.8777],["Manipur","Imphal",24.8170,93.9368],["Meghalaya","Shillong",25.5788,91.8933],["Mizoram","Aizawl",23.7271,92.7176],["Nagaland","Kohima",25.6751,94.1086],["Odisha","Bhubaneswar",20.2961,85.8245],["Punjab","Chandigarh",30.7333,76.7794],["Rajasthan","Jaipur",26.9124,75.7873],["Sikkim","Gangtok",27.3389,88.6065],["Tamil Nadu","Chennai",13.0827,80.2707],["Telangana","Hyderabad",17.3850,78.4867],["Tripura","Agartala",23.8315,91.2868],["Uttar Pradesh","Lucknow",26.8467,80.9462],["Uttarakhand","Dehradun",30.3165,78.0322],["West Bengal","Kolkata",22.5726,88.3639]
+];
+const svg=document.querySelector("#map"),states=document.querySelector("#states"),marks=document.querySelector("#marks");
+const sx=620/((98-67.5)*Math.cos(22*Math.PI/180)), sy=700/(38.5-6.5);
+function project(lon,lat){return [(lon-67.5)*Math.cos(22*Math.PI/180)*sx,(38.5-lat)*sy]}
+function pathRing(ring){return ring.map((p,i)=>{const [x,y]=project(p[0],p[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ")+" Z"}
+function drawFeature(f){const g=document.createElementNS("http://www.w3.org/2000/svg","path");const geom=f.geometry;if(!geom)return;let d="";if(geom.type==="Polygon")d=geom.coordinates.map(pathRing).join(" ");else if(geom.type==="MultiPolygon")d=geom.coordinates.map(poly=>poly.map(pathRing).join(" ")).join(" ");if(!d)return;g.setAttribute("d",d);g.setAttribute("class","state");g.setAttribute("fill-rule","evenodd");states.appendChild(g)}
+function marker(x,y,cls,r=5){const c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",x);c.setAttribute("cy",y);c.setAttribute("r",r);c.setAttribute("class",cls);marks.appendChild(c)}
+let boundaryReady=false,round=[],index=0,guess=null,answers=[],allMarks=false;
+const el=id=>document.getElementById(id);
+function drawCapitalDots(){marks.innerHTML="";if(allMarks){capitals.forEach(c=>{const [x,y]=project(c[3],c[2]);marker(x,y,"correct",3.5)})}}
+async function loadMap(){const url="https://livingatlas.esri.in/server/rest/services/LivingAtlas/IND_AdminBoundary/MapServer/1/query?where=1%3D1&outFields=state&returnGeometry=true&outSR=4326&f=geojson";try{const response=await fetch(url);if(!response.ok)throw new Error("Map service response "+response.status);const data=await response.json();if(!data.features||!data.features.length)throw new Error("No boundary features returned");data.features.forEach(drawFeature);boundaryReady=true;el("mapstatus").textContent="State boundaries ready";startRound()}catch(e){el("mapstatus").textContent="Map could not load";el("status").textContent="The map boundary service could not be reached. Please check your internet connection and reload this page.";console.error(e)}}
+function shuffled(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startRound(){if(!boundaryReady)return;const count=Number(el("length").value);round=shuffled(capitals).slice(0,count);index=0;answers=[];guess=null;allMarks=false;el("game").classList.remove("hidden");el("results").classList.add("hidden");el("submit").disabled=false;el("skip").disabled=false;drawCapitalDots();showQuestion()}
+function showQuestion(){const c=round[index];guess=null;el("state").textContent=c[0];el("counter").textContent="Question "+(index+1)+" of "+round.length;el("bar").style.width=(index/round.length*100)+"%";el("status").textContent="Click on the map to place your guess.";el("submit").textContent="Check my answer";el("submit").disabled=true;el("skip").disabled=false;marks.querySelectorAll(".guess,.correct").forEach(n=>n.remove())}
+function pointFromEvent(evt){const p=svg.createSVGPoint();p.x=evt.clientX;p.y=evt.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
+svg.addEventListener("click",evt=>{if(!boundaryReady||el("results").classList.contains("hidden")===false)return;const p=pointFromEvent(evt);if(p.x<0||p.x>620||p.y<0||p.y>700)return;guess=p;marks.querySelectorAll(".guess").forEach(n=>n.remove());marker(p.x,p.y,"guess",7);el("submit").disabled=false;el("status").textContent="Your guess is marked in orange. Press “Check my answer” when you are ready."});
+function inverse(x,y){return [67.5+x/sx/Math.cos(22*Math.PI/180),38.5-y/sy]}
+function distanceKm(a,b){const rad=v=>v*Math.PI/180;const dlat=rad(a[1]-b[1]),dlon=rad(a[0]-b[0]);const h=Math.sin(dlat/2)**2+Math.cos(rad(a[1]))*Math.cos(rad(b[1]))*Math.sin(dlon/2)**2;return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h))}
+function finishAnswer(skipped=false){const c=round[index];let loc=null,dist=null,correct=false;if(guess){loc=inverse(guess.x,guess.y);dist=distanceKm([c[3],c[2]],[loc[0],loc[1]]);correct=dist<=130}answers.push({state:c[0],capital:c[1],target:[c[3],c[2]],guess:loc,distance:dist,correct,skipped});el("skip").disabled=true;el("submit").disabled=true;el("submit").textContent="Answer saved";if(skipped)el("status").textContent="Skipped. The correct capital is "+c[1]+". We'll show it in your results.";else if(correct)el("status").textContent="Great job! Your click was close to "+c[1]+". The correct location is marked in green.";else el("status").textContent="Good try! The capital is "+c[1]+". The green dot shows its correct location.";const [x,y]=project(c[3],c[2]);marker(x,y,"correct",6);setTimeout(()=>{index++;if(index<round.length)showQuestion();else showResults()},skipped?1000:1300)}
+function showResults(){el("game").classList.add("hidden");el("results").classList.remove("hidden");const good=answers.filter(a=>a.correct).length;el("score").textContent=good+" / "+answers.length+" close guesses";el("resultrows").innerHTML="";answers.forEach(a=>{const tr=document.createElement("tr");const guessText=a.skipped?"Skipped":a.guess? a.guess[1].toFixed(2)+"°E, "+a.guess[0].toFixed(2)+"°N":"—";const status=a.skipped?"Skipped":a.correct?"✓ Close":"Try again";[a.state,guessText,a.capital,status].forEach(t=>{const td=document.createElement("td");td.textContent=t;tr.appendChild(td)});el("resultrows").appendChild(tr)});marks.innerHTML="";answers.forEach(a=>{const [tx,ty]=project(a.target[0],a.target[1]);marker(tx,ty,"correct",5.5);if(a.guess){const [gx,gy]=project(a.guess[0],a.guess[1]);marker(gx,gy,"guess",5.5)}});el("bar").style.width="100%"}
+el("submit").addEventListener("click",()=>{if(guess)finishAnswer(false)});el("skip").addEventListener("click",()=>finishAnswer(true));el("length").addEventListener("change",()=>{if(boundaryReady)startRound()});el("again").addEventListener("click",startRound);el("showall").addEventListener("click",()=>{marks.innerHTML="";capitals.forEach(c=>{const [x,y]=project(c[3],c[2]);marker(x,y,"correct",4)})});
+loadMap();
+</script>
+</body></html>
