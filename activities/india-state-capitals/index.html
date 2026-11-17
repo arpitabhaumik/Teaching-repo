@@ -36,15 +36,17 @@ select{padding:9px 10px;border:1px solid #cbd5e1;border-radius:9px;background:wh
   <p class="small" style="text-align:center;margin:2px 8px 9px">The map shows state and Union Territory boundaries. Only the 28 states are included in this quiz.</p>
  </div>
  <div class="card questioncard">
-  <div class="small" id="roundlabel">10 questions · Practice round</div><div class="progress"><span id="bar"></span></div>
-  <div class="small" id="counter">Question 1 of 10</div>
-  <div class="question">Where is the capital of <span class="state-name" id="state">…</span>?</div>
-  <p class="small">Click the place on the map where you think the capital is. You can take your time!</p>
+  <div class="small">Choose any of the 28 Indian states to practise.</div>
+  <label class="small" for="statechoice">Choose a state</label>
+  <select id="statechoice" style="width:100%;margin:7px 0 12px"><option value="">Select a state…</option></select>
+  <div class="question">Where is the capital of this state?</div>
+  <p class="small">Click on the map to place your prediction. The capital name will be revealed after you check your answer.</p>
   <div id="status" role="status" aria-live="polite">The map is loading. One moment…</div>
-  <div class="controls"><button id="submit" disabled>Check my answer</button><button class="secondary" id="skip" disabled>Skip</button></div>
-  <div class="controls"><label class="small" for="length">Round length</label><select id="length"><option value="10" selected>10 states</option><option value="28">All 28 states</option></select></div>
-  <p class="small">Your click is saved for the results at the end. You can compare each guess with the real capital location.</p>
- </div>
+  <p id="actual" class="question state-name hidden" aria-live="polite"></p>
+  <div class="controls"><button id="submit" disabled>Check my prediction</button><button class="secondary hidden" id="next">Choose another state</button></div>
+  <div class="controls"><button class="secondary" id="finish" disabled>Finish and see my results</button></div>
+  <p class="small">You can choose states in any order. Your predictions and the correct capital names are saved in your results.</p>
+ </div>>
 </section>
 <section class="card hidden" id="results">
  <h2>Your practice results</h2><div class="score" id="score"></div><p class="small">Here are the states you practised, your map predictions, and each actual capital name.</p>
