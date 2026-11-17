@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff"><title>Times Tables Challenge</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f5f7ff}*{box-sizing:border-box}body{margin:0}
+header{background:linear-gradient(125deg,#172554,#4338ca);color:#fff;padding:26px 18px}header .wrap,main{max-width:850px;margin:auto}h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:0 0 6px}header p{margin:0;color:#dbeafe;line-height:1.5}
+main{padding:22px 16px 50px}.panel{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:clamp(18px,4vw,28px);box-shadow:0 8px 24px #1e293b0a;margin-bottom:18px}
+h2{margin:0 0 8px}.muted{color:#64748b;line-height:1.55}.settings{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}.field label{display:block;font-weight:700;margin-bottom:7px}.field select,.field input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:white}
+button{border:0;border-radius:11px;padding:12px 17px;background:#4338ca;color:white;font:inherit;font-weight:700;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#e9edfb;color:#28366c}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.back{color:#4338ca;text-decoration:none}.hidden{display:none!important}
+.gamehead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.pill{background:#eef2ff;color:#3730a3;padding:7px 11px;border-radius:999px;font-weight:750;font-size:.9rem}
+.progress{height:9px;background:#e8edf6;border-radius:9px;overflow:hidden;margin:16px 0}.progress span{height:100%;display:block;background:#6366f1;width:0}
+.problem{text-align:center;padding:22px 0 12px}.equation{font-size:clamp(2.5rem,9vw,4.2rem);font-weight:850;letter-spacing:-.04em}.answerline{display:flex;justify-content:center;gap:10px;align-items:center;margin:18px auto;max-width:350px}.answerline input{width:150px;text-align:center;font-size:1.5rem;padding:12px;border:2px solid #cbd5e1;border-radius:12px}
+#feedback{min-height:30px;text-align:center;font-weight:750;margin:12px 0}.good{color:#15803d}.bad{color:#b91c1c}
+.results{width:100%;border-collapse:collapse;margin-top:15px}.results th,.results td{text-align:left;padding:10px 8px;border-bottom:1px solid #e5eaf2}.results th{color:#64748b;font-size:.88rem}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#f3f5fb;border-radius:13px;padding:13px;text-align:center}.stat strong{display:block;font-size:1.45rem}.stat span{font-size:.8rem;color:#64748b}
+@media(max-width:560px){.settings{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.answerline input{width:125px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>⏱️ Times Tables Challenge</h1><p>Practise your multiplication, beat the clock, and see how you did.</p></div></header>
+<main>
+<section class="panel" id="setup">
+<h2>Set up your round</h2><p class="muted">Choose the highest table to include. For example, choosing 12 gives questions from the 1 to 12 times tables.</p>
+<div class="settings">
+<div class="field"><label for="maxTable">Include tables up to</label><select id="maxTable"></select></div>
+<div class="field"><label for="questionCount">Number of questions</label><input id="questionCount" type="number" min="1" max="100" value="10"></div>
+</div>
+<button id="start">Start the challenge</button>
+</section>
+<section class="panel hidden" id="game">
+<div class="gamehead"><span class="pill" id="counter">Question 1 of 10</span><span class="pill" id="timer">00:00</span></div>
+<div class="progress"><span id="bar"></span></div>
+<div class="problem"><div class="muted">Solve this multiplication</div><div class="equation" id="equation">7 × 8 = ?</div></div>
+<form id="answerForm"><div class="answerline"><label class="muted" for="answer">Answer</label><input id="answer" type="number" inputmode="numeric" autocomplete="off" required></div><div id="feedback" role="status" aria-live="polite"></div><div class="row" style="justify-content:center"><button id="check" type="submit">Check answer</button><button id="next" type="button" class="secondary hidden">Next question</button></div></form>
+<p class="muted" style="text-align:center;margin-top:18px">The timer runs for the whole round. Press Enter to submit an answer.</p>
+</section>
+<section class="panel hidden" id="summary">
+<h2>Round complete! 🎉</h2><p class="muted" id="summaryText"></p>
+<div class="stats"><div class="stat"><strong id="scoreStat">0/0</strong><span>Correct answers</span></div><div class="stat"><strong id="wrongStat">0</strong><span>Incorrect answers</span></div><div class="stat"><strong id="timeStat">00:00</strong><span>Total time</span></div></div>
+<div style="overflow-x:auto"><table class="results"><thead><tr><th>#</th><th>Question</th><th>Your answer</th><th>Correct answer</th><th>Result</th></tr></thead><tbody id="resultRows"></tbody></table></div>
+<div class="row" style="margin-top:20px"><button id="playAgain">Play another round</button><a class="back" href="../">← All activities</a></div>
+</section>
+<p class="muted"><a class="back" href="../">← Back to all activities</a></p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+for(let n=1;n<=20;n++){const o=document.createElement("option");o.value=n;o.textContent=n+" times table";if(n===12)o.selected=true;$("maxTable").appendChild(o)}
+let questions=[],index=0,records=[],startedAt=0,tick=null,locked=false;
+function formatTime(ms){const total=Math.floor(ms/1000),m=Math.floor(total/60),s=total%60;return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
+function elapsed(){return Date.now()-startedAt}
+function makeQuestions(max,count){const list=[];for(let i=0;i<count;i++){const a=1+Math.floor(Math.random()*max),b=1+Math.floor(Math.random()*12);list.push({a,b,answer:a*b})}return list}
+function renderQuestion(){locked=false;$("counter").textContent="Question "+(index+1)+" of "+questions.length;$("bar").style.width=(index/questions.length*100)+"%";$("equation").textContent=questions[index].a+" × "+questions[index].b+" = ?";$("answer").value="";$("answer").disabled=false;$("answer").focus();$("feedback").textContent="";$("feedback").className="";$("check").classList.remove("hidden");$("next").classList.add("hidden")}
+function start(){const count=Number($("questionCount").value),max=Number($("maxTable").value);if(!Number.isInteger(count)||count<1||count>100){$("questionCount").focus();$("questionCount").reportValidity();return}questions=makeQuestions(max,count);index=0;records=[];$("setup").classList.add("hidden");$("summary").classList.add("hidden");$("game").classList.remove("hidden");startedAt=Date.now();$("timer").textContent="00:00";clearInterval(tick);tick=setInterval(()=>$("timer").textContent=formatTime(elapsed()),250);renderQuestion()}
+function submitAnswer(event){event.preventDefault();if(locked)return;const raw=$("answer").value;if(raw.trim()==="")return;const q=questions[index],value=Number(raw),correct=value===q.answer;records.push({q:q.a+" × "+q.b,entered:value,answer:q.answer,correct});locked=true;$("answer").disabled=true;$("check").classList.add("hidden");$("next").classList.remove("hidden");$("feedback").textContent=correct?"Correct! Great job.":"Not quite — the correct answer is "+q.answer+"."; $("feedback").className=correct?"good":"bad";$("next").textContent=index===questions.length-1?"See my results":"Next question";$("bar").style.width=((index+1)/questions.length*100)+"%"}
+function next(){if(!locked)return;if(index<questions.length-1){index++;renderQuestion()}else{finish()}}
+function finish(){clearInterval(tick);const time=elapsed(),correct=records.filter(r=>r.correct).length;$("game").classList.add("hidden");$("summary").classList.remove("hidden");$("scoreStat").textContent=correct+"/"+records.length;$("wrongStat").textContent=records.length-correct;$("timeStat").textContent=formatTime(time);$("summaryText").textContent="You completed "+records.length+" questions from tables 1 to "+$("maxTable").value+" in "+formatTime(time)+". Here's how you did:";$("resultRows").innerHTML="";records.forEach((r,i)=>{const tr=document.createElement("tr");[i+1,r.q,r.entered,r.answer,r.correct?"✓ Correct":"✗ Incorrect"].forEach((v,j)=>{const td=document.createElement("td");td.textContent=v;if(j===4)td.style.color=r.correct?"#15803d":"#b91c1c";tr.appendChild(td)});$("resultRows").appendChild(tr)})}
+$("start").addEventListener("click",start);$("answerForm").addEventListener("submit",submitAnswer);$("next").addEventListener("click",next);$("playAgain").addEventListener("click",()=>{$("summary").classList.add("hidden");$("setup").classList.remove("hidden")});
+</script>
+</body></html>
