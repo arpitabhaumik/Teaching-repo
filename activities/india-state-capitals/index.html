@@ -26,17 +26,17 @@ select{padding:9px 10px;border:1px solid #cbd5e1;border-radius:9px;background:wh
 </style>
 </head>
 <body>
-<header><div class="wrap"><h1>Find the State Capital!</h1><p>Choose an Indian state, predict where its capital is on the map, and reveal the correct capital name.</p></div></header>
+<header><div class="wrap"><h1>Find the State Capital!</h1><p>Choose an Indian state or territory, predict where its capital is on the map, and reveal the correct capital name.</p></div></header>
 <main>
 <section class="layout" id="game">
  <div class="card mapcard">
   <div class="maphead"><strong>🗺️ Map of India</strong><span class="small" id="mapstatus">Loading state boundaries…</span></div>
-  <div class="mapbox"><div class="zoomtools" aria-label="Map zoom controls"><button id="zoomin" type="button" aria-label="Zoom in" title="Zoom in">+</button><button id="zoomout" type="button" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomreset" type="button" aria-label="Reset zoom" title="Reset zoom">Reset</button></div><svg id="map" viewBox="0 0 620 700" role="img" aria-label="Interactive map showing Indian states only"><rect class="mapbg" x="0" y="0" width="620" height="700" rx="12"/><g id="states"></g><g id="marks"></g></svg></div>
+  <div class="mapbox"><div class="zoomtools" aria-label="Map zoom controls"><button id="zoomin" type="button" aria-label="Zoom in" title="Zoom in">+</button><button id="zoomout" type="button" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomreset" type="button" aria-label="Reset zoom" title="Reset zoom">Reset</button></div><svg id="map" viewBox="0 0 620 700" role="img" aria-label="Interactive map showing Indian states and selected Union Territories"><rect class="mapbg" x="0" y="0" width="620" height="700" rx="12"/><g id="states"></g><g id="marks"></g></svg></div>
   <div class="legend"><span><i class="dot" style="background:#f59e0b"></i>Your click</span><span><i class="dot" style="background:#16a34a"></i>Correct capital</span></div>
-  <p class="small" style="text-align:center;margin:2px 8px 9px">Map view is limited to India’s 28 states; Union Territories are not included.</p>
+  <p class="small" style="text-align:center;margin:2px 8px 9px">This activity covers all 28 states, plus Jammu & Kashmir and Ladakh. Other Union Territories are not included.</p>
  </div>
  <div class="card questioncard">
-  <div class="small">Choose any of the 28 Indian states to practise.</div>
+  <div class="small">Choose any of the 28 states, or Jammu & Kashmir and Ladakh, to practise.</div>
   <label class="small" for="statechoice">Choose a state</label>
   <select id="statechoice" style="width:100%;margin:7px 0 12px"><option value="">Select a state…</option></select>
   <div class="question">Where is the capital of this state?</div>
@@ -53,11 +53,13 @@ select{padding:9px 10px;border:1px solid #cbd5e1;border-radius:9px;background:wh
  <div class="controls"><button class="secondary" id="again">Play again</button></div>
  <div style="overflow-x:auto"><table class="resulttable"><thead><tr><th>State</th><th>Your prediction</th><th>Actual capital</th><th>Result</th></tr></thead><tbody id="resultrows"></tbody></table></div>
 </section>
-<div class="source"><strong>Map and learning references:</strong> State-boundary shapes are loaded from the dedicated Survey of India / Esri India 2024 state-boundary service (<a href="https://livingatlas.esri.in/server/rest/services/IAB2024/IAB_State_2024/MapServer/0" target="_blank" rel="noopener">state boundary layer details</a>); Union Territories are filtered out. For an official political-map reference, see the <a href="https://surveyofindia.gov.in/pages/political-map-of-india/1000" target="_blank" rel="noopener">Survey of India map page</a>. Capital names are cross-checked against the Government of India’s Survey of India political map and official references; Andhra Pradesh’s capital is Amaravati. This is a simplified classroom map, not a navigation map.</div>
+<div class="source"><strong>Map and learning references:</strong> State-boundary shapes are loaded from the dedicated Survey of India / Esri India 2024 state-boundary service (<a href="https://livingatlas.esri.in/server/rest/services/IAB2024/IAB_State_2024/MapServer/0" target="_blank" rel="noopener">state boundary layer details</a>). Jammu & Kashmir and Ladakh are included as additional practice choices; other Union Territories are not included. For an official political-map reference, see the <a href="https://surveyofindia.gov.in/pages/political-map-of-india/1000" target="_blank" rel="noopener">Survey of India map page</a>. Capital names are cross-checked against the Government of India’s Survey of India political map and official references; Andhra Pradesh’s capital is Amaravati. This is a simplified classroom map, not a navigation map.</div>
 </main>
 <script>
 const capitals=[
-["Andhra Pradesh","Amaravati",16.5062,80.6480],["Arunachal Pradesh","Itanagar",27.0844,93.6053],["Assam","Dispur",26.1433,91.7898],["Bihar","Patna",25.5941,85.1376],["Chhattisgarh","Raipur",21.2514,81.6296],["Goa","Panaji",15.4909,73.8278],["Gujarat","Gandhinagar",23.2156,72.6369],["Haryana","Chandigarh",30.7333,76.7794],["Himachal Pradesh","Shimla",31.1048,77.1734],["Jharkhand","Ranchi",23.3441,85.3096],["Karnataka","Bengaluru",12.9716,77.5946],["Kerala","Thiruvananthapuram",8.5241,76.9366],["Madhya Pradesh","Bhopal",23.2599,77.4126],["Maharashtra","Mumbai",19.0760,72.8777],["Manipur","Imphal",24.8170,93.9368],["Meghalaya","Shillong",25.5788,91.8933],["Mizoram","Aizawl",23.7271,92.7176],["Nagaland","Kohima",25.6751,94.1086],["Odisha","Bhubaneswar",20.2961,85.8245],["Punjab","Chandigarh",30.7333,76.7794],["Rajasthan","Jaipur",26.9124,75.7873],["Sikkim","Gangtok",27.3389,88.6065],["Tamil Nadu","Chennai",13.0827,80.2707],["Telangana","Hyderabad",17.3850,78.4867],["Tripura","Agartala",23.8315,91.2868],["Uttar Pradesh","Lucknow",26.8467,80.9462],["Uttarakhand","Dehradun",30.3165,78.0322],["West Bengal","Kolkata",22.5726,88.3639]
+["Andhra Pradesh","Amaravati",16.5062,80.6480],["Arunachal Pradesh","Itanagar",27.0844,93.6053],["Assam","Dispur",26.1433,91.7898],["Bihar","Patna",25.5941,85.1376],["Chhattisgarh","Raipur",21.2514,81.6296],["Goa","Panaji",15.4909,73.8278],["Gujarat","Gandhinagar",23.2156,72.6369],["Haryana","Chandigarh",30.7333,76.7794],["Himachal Pradesh","Shimla",31.1048,77.1734],["Jharkhand","Ranchi",23.3441,85.3096],["Karnataka","Bengaluru",12.9716,77.5946],["Kerala","Thiruvananthapuram",8.5241,76.9366],["Madhya Pradesh","Bhopal",23.2599,77.4126],["Maharashtra","Mumbai",19.0760,72.8777],["Manipur","Imphal",24.8170,93.9368],["Meghalaya","Shillong",25.5788,91.8933],["Mizoram","Aizawl",23.7271,92.7176],["Nagaland","Kohima",25.6751,94.1086],["Odisha","Bhubaneswar",20.2961,85.8245],["Punjab","Chandigarh",30.7333,76.7794],["Rajasthan","Jaipur",26.9124,75.7873],["Sikkim","Gangtok",27.3389,88.6065],["Tamil Nadu","Chennai",13.0827,80.2707],["Telangana","Hyderabad",17.3850,78.4867],["Tripura","Agartala",23.8315,91.2868],["Uttar Pradesh","Lucknow",26.8467,80.9462],["Uttarakhand","Dehradun",30.3165,78.0322],["West Bengal","Kolkata",22.5726,88.3639],
+["Jammu & Kashmir","Srinagar (summer); Jammu (winter)",34.0837,74.7973],
+["Ladakh","Leh",34.1526,77.5771]
 ];
 const svg=document.querySelector("#map"),states=document.querySelector("#states"),marks=document.querySelector("#marks");
 const sx=620/(98-67.5), sy=700/(38.5-6.5);
