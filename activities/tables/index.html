@@ -16,10 +16,12 @@ button{border:0;border-radius:11px;padding:12px 17px;background:#4338ca;color:wh
 #feedback{min-height:30px;text-align:center;font-weight:750;margin:12px 0}.good{color:#15803d}.bad{color:#b91c1c}
 .results{width:100%;border-collapse:collapse;margin-top:15px}.results th,.results td{text-align:left;padding:10px 8px;border-bottom:1px solid #e5eaf2}.results th{color:#64748b;font-size:.88rem}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#f3f5fb;border-radius:13px;padding:13px;text-align:center}.stat strong{display:block;font-size:1.45rem}.stat span{font-size:.8rem;color:#64748b}
 @media(max-width:560px){.settings{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.answerline input{width:125px}}
+ .activity-nav{max-width:850px;margin:0 auto 16px;padding:0 16px}.activity-nav a{display:inline-block;color:#4338ca;text-decoration:none;font-weight:700;background:#e9edfb;padding:9px 13px;border-radius:10px}
 </style>
 </head>
 <body>
 <header><div class="wrap"><h1>⏱️ Times Tables Challenge</h1><p>Practise your multiplication, beat the clock, and see how you did.</p></div></header>
+<nav class="activity-nav"><a href="../">← Back to all activities</a></nav>
 <main>
 <section class="panel" id="setup">
 <h2>Set up your round</h2><p class="muted">Choose the highest table to include. For example, choosing 12 gives questions from the 1 to 12 times tables.</p>
@@ -40,9 +42,9 @@ button{border:0;border-radius:11px;padding:12px 17px;background:#4338ca;color:wh
 <h2>Round complete! 🎉</h2><p class="muted" id="summaryText"></p>
 <div class="stats"><div class="stat"><strong id="scoreStat">0/0</strong><span>Correct answers</span></div><div class="stat"><strong id="wrongStat">0</strong><span>Incorrect answers</span></div><div class="stat"><strong id="timeStat">00:00</strong><span>Total time</span></div></div>
 <div style="overflow-x:auto"><table class="results"><thead><tr><th>#</th><th>Question</th><th>Your answer</th><th>Correct answer</th><th>Result</th></tr></thead><tbody id="resultRows"></tbody></table></div>
-<div class="row" style="margin-top:20px"><button id="playAgain">Play another round</button><a class="back" href="../">← All activities</a></div>
+<div class="row" style="margin-top:20px"><button id="playAgain">Play another round</button></div>
 </section>
-<p class="muted"><a class="back" href="../">← Back to all activities</a></p>
+
 </main>
 <script>
 const $=id=>document.getElementById(id);
