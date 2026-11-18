@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>Monument Detectives: Taj Mahal & Red Fort</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f5f7ff}*{box-sizing:border-box}body{margin:0}
+header{background:linear-gradient(125deg,#172554,#4338ca);color:#fff;padding:30px 18px}header .wrap,main{max-width:980px;margin:auto}h1{font-size:clamp(1.8rem,5vw,2.7rem);margin:0 0 8px}header p{margin:0;color:#dbeafe;line-height:1.55}
+.activity-nav{max-width:980px;margin:0 auto;padding:14px 16px 0}.activity-nav a{display:inline-block;color:#4338ca;text-decoration:none;font-weight:700;background:#e9edfb;padding:9px 13px;border-radius:10px}
+main{padding:18px 16px 55px}.panel{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:clamp(17px,3vw,26px);box-shadow:0 8px 24px #1e293b0a;margin-bottom:18px}
+h2{margin:0 0 8px;font-size:1.35rem}.muted{color:#64748b;line-height:1.55}.intro{margin-top:0}.pictures{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.monument{border:1px solid #e2e8f0;border-radius:15px;padding:12px;background:#fbfcff}.monument h3{text-align:center;margin:6px 0 0;font-size:1.1rem}.art{width:100%;height:auto;display:block;max-height:260px}.question{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #edf0f5}.question:last-child{border:0}.question label{font-weight:700}.question select{width:min(100%,270px);padding:11px;border:1px solid #cbd5e1;border-radius:10px;background:white;font:inherit}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+button{border:0;border-radius:11px;padding:12px 17px;background:#4338ca;color:white;font:inherit;font-weight:750;cursor:pointer}button.secondary{background:#e9edfb;color:#28366c}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a5b4fc;outline-offset:2px}
+.feedback{min-height:26px;margin:12px 0 0;font-weight:750}.good{color:#15803d}.bad{color:#b91c1c}.writing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.write-card{background:#fbfcff;border:1px solid #e2e8f0;border-radius:14px;padding:15px}.write-card h3{margin:0 0 8px}.write-card textarea{width:100%;min-height:180px;resize:vertical;border:1px solid #cbd5e1;border-radius:10px;padding:12px;font:inherit;line-height:1.6}.count{font-size:.88rem;color:#64748b;margin:7px 0 0}.result{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;margin-top:14px;line-height:1.55}.hidden{display:none!important}.tiny{font-size:.9rem}
+@media(max-width:650px){.pictures,.writing-grid{grid-template-columns:1fr}.question{grid-template-columns:1fr}.question select{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>🕵️ Monument Detectives</h1><p>Look closely at two famous Indian monuments, investigate what they are made from, and share what you know.</p></div></header>
+<nav class="activity-nav"><a href="../">← Back to all activities</a></nav>
+<main>
+<section class="panel">
+<h2>Step 1: Look carefully</h2>
+<p class="muted intro">Study both pictures. One monument is made mainly of white marble. The other is made mainly of red sandstone. Can you work out which is which?</p>
+<div class="pictures">
+<article class="monument"><svg class="art" viewBox="0 0 360 250" role="img" aria-label="Illustration of the Taj Mahal with its large central dome, four minarets, arches and reflecting pool">
+<defs><linearGradient id="skyT" x2="0" y2="1"><stop stop-color="#dbeafe"/><stop offset="1" stop-color="#f8fafc"/></linearGradient><linearGradient id="marble" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dbe4ef"/></linearGradient></defs>
+<rect width="360" height="250" rx="10" fill="url(#skyT)"/><circle cx="285" cy="38" r="19" fill="#fff4cc"/>
+<path d="M0 202 Q90 190 180 202 T360 202 V250 H0" fill="#b9d8ce"/><path d="M0 222 H360" stroke="#8ab6b0" stroke-width="3"/>
+<path d="M42 190 V87 Q42 76 53 76 H70 Q81 76 81 87 V190Z M279 190 V87 Q279 76 290 76 H307 Q318 76 318 87 V190Z" fill="url(#marble)" stroke="#aab8c8" stroke-width="2"/>
+<path d="M47 78 Q61 48 76 78Z M284 78 Q299 48 313 78Z" fill="#f8fafc" stroke="#aab8c8" stroke-width="1.5"/>
+<path d="M88 190 V125 Q88 116 99 116 H261 Q272 116 272 125 V190Z" fill="url(#marble)" stroke="#aab8c8" stroke-width="2"/>
+<path d="M112 190 V151 Q112 124 136 124 Q160 124 160 151 V190Z M200 190 V151 Q200 124 224 124 Q248 124 248 151 V190Z" fill="#a9b9c9" stroke="#8c9bad" stroke-width="2"/>
+<path d="M146 190 V110 Q146 80 180 80 Q214 80 214 110 V190Z" fill="#f8fafc" stroke="#aab8c8" stroke-width="2"/>
+<path d="M142 111 Q142 49 180 49 Q218 49 218 111Z" fill="url(#marble)" stroke="#aab8c8" stroke-width="2"/>
+<path d="M180 49 V33 M176 33 H184 M180 33 L180 26" stroke="#8c9bad" stroke-width="2" fill="none"/>
+<path d="M167 190 V151 Q167 127 180 127 Q193 127 193 151 V190Z" fill="#9aafc3" stroke="#8799aa" stroke-width="2"/>
+<path d="M20 210 H340" stroke="#fff" stroke-width="4" opacity=".8"/><path d="M180 210 V250" stroke="#e8f2f7" stroke-width="8" opacity=".8"/>
+<g fill="#c5d0dc"><circle cx="61" cy="94" r="3"/><circle cx="299" cy="94" r="3"/><circle cx="180" cy="103" r="4"/></g>
+</svg><h3>Taj Mahal</h3></article>
+<article class="monument"><svg class="art" viewBox="0 0 360 250" role="img" aria-label="Illustration of the Red Fort with red sandstone walls, central arched gate, battlements and towers">
+<defs><linearGradient id="skyR" x2="0" y2="1"><stop stop-color="#dbeafe"/><stop offset="1" stop-color="#fff7ed"/></linearGradient><linearGradient id="stone" x2="1" y2="1"><stop stop-color="#c65c3a"/><stop offset="1" stop-color="#963d2c"/></linearGradient></defs>
+<rect width="360" height="250" rx="10" fill="url(#skyR)"/><circle cx="285" cy="39" r="18" fill="#fff0c2"/>
+<path d="M0 204 Q90 194 180 204 T360 204 V250 H0" fill="#a9c7a2"/>
+<path d="M35 194 V106 L47 92 L59 106 L71 92 L83 106 L95 92 L107 106 L119 92 L131 106 L143 92 L155 106 L167 92 L179 106 L191 92 L203 106 L215 92 L227 106 L239 92 L251 106 L263 92 L275 106 L287 92 L299 106 L311 92 L325 106 V194Z" fill="url(#stone)" stroke="#783626" stroke-width="3"/>
+<path d="M23 194 V119 H45 V194 M315 194 V119 H337 V194" fill="#a84932" stroke="#783626" stroke-width="3"/>
+<path d="M133 194 V143 Q133 113 180 113 Q227 113 227 143 V194Z" fill="#6e3029" stroke="#e9a078" stroke-width="4"/>
+<path d="M148 194 V151 Q148 127 180 127 Q212 127 212 151 V194Z" fill="#2b3544"/>
+<path d="M164 194 V158 Q164 144 180 144 Q196 144 196 158 V194Z" fill="#b7c6cf"/>
+<path d="M35 118 H325 M35 139 H133 M227 139 H325" stroke="#e89b73" stroke-width="3"/>
+<g fill="#f2b18c"><rect x="54" y="128" width="8" height="12" rx="3"/><rect x="84" y="128" width="8" height="12" rx="3"/><rect x="112" y="128" width="8" height="12" rx="3"/><rect x="240" y="128" width="8" height="12" rx="3"/><rect x="268" y="128" width="8" height="12" rx="3"/><rect x="296" y="128" width="8" height="12" rx="3"/></g>
+<path d="M0 204 H360" stroke="#71966c" stroke-width="4"/>
+</svg><h3>Red Fort</h3></article>
+</div>
+</section>
+<section class="panel">
+<h2>Step 2: Make your guesses</h2>
+<p class="muted">Choose the material you think was used for each monument. Then answer the history question.</p>
+<div class="question"><label for="tajMaterial">The Taj Mahal is mainly made of…</label><select id="tajMaterial"><option value="">Choose an answer</option><option value="red">Red sandstone</option><option value="white">White marble</option></select></div>
+<div class="question"><label for="fortMaterial">The Red Fort is mainly made of…</label><select id="fortMaterial"><option value="">Choose an answer</option><option value="white">White marble</option><option value="red">Red sandstone</option></select></div>
+<div class="question"><label for="builder">Who commissioned the building of the Taj Mahal?</label><select id="builder"><option value="">Choose an answer</option><option value="akbar">Akbar</option><option value="shah">Shah Jahan</option><option value="ashoka">Ashoka</option><option value="babur">Babur</option></select></div>
+<div class="row"><button id="checkAnswers">Check my guesses</button><button class="secondary" id="tryAgain" type="button">Try again</button></div>
+<div id="guessFeedback" class="feedback" role="status" aria-live="polite"></div>
+<div id="answerReveal" class="result hidden"><strong>Detective answers</strong><ul><li>The Taj Mahal is built mainly of white marble.</li><li>The Red Fort is built mainly of red sandstone.</li><li>The Taj Mahal was commissioned by the Mughal emperor Shah Jahan in memory of his wife Mumtaz Mahal.</li></ul></div>
+</section>
+<section class="panel">
+<h2>Step 3: Become a young historian</h2>
+<p class="muted">Write <strong>four sentences about the Taj Mahal</strong> and <strong>four sentences about the Red Fort</strong>. Use your own words. Think about what each place looks like, where it is, what it is made from, and why people visit it.</p>
+<div class="writing-grid">
+<div class="write-card"><h3>✍️ The Taj Mahal</h3><p class="muted tiny">Write four sentences about this monument.</p><textarea id="tajWriting" placeholder="1. The Taj Mahal is in...&#10;2. It is made of...&#10;3. It was built by...&#10;4. People visit it because..."></textarea><p class="count" id="tajCount">0 sentences written</p></div>
+<div class="write-card"><h3>✍️ The Red Fort</h3><p class="muted tiny">Write four sentences about this monument.</p><textarea id="fortWriting" placeholder="1. The Red Fort is in...&#10;2. It is made of...&#10;3. It was built during...&#10;4. It is important because..."></textarea><p class="count" id="fortCount">0 sentences written</p></div>
+</div>
+<div class="row"><button id="checkWriting">Check my writing</button></div>
+<div id="writingFeedback" class="feedback" role="status" aria-live="polite"></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function sentenceCount(text){return text.split(/[.!?]+/).map(s=>s.trim()).filter(Boolean).length}
+function updateCount(id,out){const n=sentenceCount($(id).value);$(out).textContent=n+" sentence"+(n===1?"":"s")+" written";}
+$("tajWriting").addEventListener("input",()=>updateCount("tajWriting","tajCount"));
+$("fortWriting").addEventListener("input",()=>updateCount("fortWriting","fortCount"));
+$("checkAnswers").addEventListener("click",()=>{
+ const a=$("tajMaterial").value==="white",b=$("fortMaterial").value==="red",c=$("builder").value==="shah";
+ const n=[a,b,c].filter(Boolean).length;
+ $("guessFeedback").textContent=n===3?"Brilliant detective work! You got all three answers right.": "You got "+n+" out of 3 correct. Have another look and try again.";
+ $("guessFeedback").className="feedback "+(n===3?"good":"bad");
+ $("answerReveal").classList.remove("hidden");
+});
+$("tryAgain").addEventListener("click",()=>{
+ ["tajMaterial","fortMaterial","builder"].forEach(id=>$(id).value="");
+ $("guessFeedback").textContent="";$("guessFeedback").className="feedback";$("answerReveal").classList.add("hidden");
+});
+$("checkWriting").addEventListener("click",()=>{
+ const a=sentenceCount($("tajWriting").value),b=sentenceCount($("fortWriting").value);
+ $("writingFeedback").textContent=a>=4&&b>=4?"Well done! You have written at least four sentences about each monument. Read them once more and check your capital letters and full stops.":"You have "+a+" sentence(s) about the Taj Mahal and "+b+" sentence(s) about the Red Fort. Add enough to reach four sentences for each monument.";
+ $("writingFeedback").className="feedback "+(a>=4&&b>=4?"good":"bad");
+});
+</script>
+</body></html>
