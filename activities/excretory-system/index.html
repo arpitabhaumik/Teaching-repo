@@ -13,7 +13,7 @@
 <svg class="anatomy" viewBox="0 0 400 700" preserveAspectRatio="none" aria-hidden="true">
 <!-- Full human outline, front view -->
 <circle cx="200" cy="55" r="39" fill="#e8edf4" stroke="#b9c6d7" stroke-width="3"/>
-<path d="M178 91L178 112Q153 118 129 133L83 157Q65 168 70 193L91 287Q95 304 109 300Q121 296 117 279L103 196L132 181L140 300Q143 331 151 354L137 478Q133 501 151 504Q167 506 171 487L197 376L203 376L229 487Q233 506 249 504Q267 501 263 478L249 354Q257 331 260 300L268 181L297 196L283 279Q279 296 291 300Q305 304 309 287L330 193Q335 168 317 157L271 133Q247 118 222 112L222 91Z" fill="#e8edf4" stroke="#b9c6d7" stroke-width="3" stroke-linejoin="round"/>
+<path d="M178 91L178 112Q153 118 129 133L83 157Q65 168 70 193L91 287Q95 304 109 300Q121 296 117 279L103 196L132 181L140 300Q143 331 151 354L145 390Q143 410 158 420L180 435L169 650Q168 669 184 671Q201 673 204 653L215 449L224 653Q227 673 244 671Q260 669 259 650L242 435L264 420Q279 410 277 390L260 354Q267 331 270 300L268 181L297 196L283 279Q279 296 291 300Q305 304 309 287L330 193Q335 168 317 157L271 133Q247 118 222 112L222 91Z" fill="#e8edf4" stroke="#b9c6d7" stroke-width="3" stroke-linejoin="round"/>
 <path d="M178 94Q200 106 222 94" fill="none" stroke="#c7d1df" stroke-width="3"/>
 <!-- anatomical landmarks: rib cage and spine -->
 <path d="M200 133V369" stroke="#c4cfdd" stroke-width="8" stroke-linecap="round" opacity=".7"/>
@@ -49,13 +49,13 @@ function applyZoom(){scene.style.transform="scale("+zoom+")";document.getElement
 function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
 function setPosition(el,x,y){const r=stage.getBoundingClientRect(),scale=zoom;const w=el.offsetWidth,h=el.offsetHeight;el.style.left=clamp(x,0,stage.clientWidth-w)+"px";el.style.top=clamp(y,0,stage.clientHeight-h)+"px";}
 function current(el){return{left:parseFloat(el.style.left)/stage.clientWidth*100,top:parseFloat(el.style.top)/stage.clientHeight*100};}
-function isCorrectPosition(el){const p=current(el),t=target[el.dataset.part];return Math.abs(p.left-t.left)<=2.8&&Math.abs(p.top-t.top)<=2.8;}
+function isCorrectPosition(el){const p=current(el),t=target[el.dataset.part];return Math.abs(p.left-t.left)<=1&&Math.abs(p.top-t.top)<=1;}
 function allCorrect(){return parts.every(isCorrectPosition);}
 function update(){progress.textContent=moved.size+" of 3 pieces moved";check.disabled=checked||moved.size!==3;}
 function clearFeedback(){feedback.className="";feedback.textContent="";}
 function pointerDown(e){if(checked)return;active=e.currentTarget;const r=active.getBoundingClientRect();offset={x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom};active.classList.add("dragging");active.setPointerCapture(e.pointerId);e.preventDefault();}
 function pointerMove(e){if(!active)return;const r=stage.getBoundingClientRect();setPosition(active,(e.clientX-r.left)/zoom-offset.x,(e.clientY-r.top)/zoom-offset.y);moved.add(active.dataset.part);clearFeedback();update();}
-function pointerUp(){if(!active)return;active.classList.remove("dragging");active=null;update();}
+function pointerUp(){if(!active)return;const el=active;el.classList.remove("dragging");active=null;const p=current(el),t=target[el.dataset.part];if(Math.abs(p.left-t.left)<=4.5&&Math.abs(p.top-t.top)<=4.5){el.style.left=t.left+"%";el.style.top=t.top+"%";}update();}
 parts.forEach(el=>{const p=initial[el.dataset.part];el.style.left=p.left+"%";el.style.top=p.top+"%";el.addEventListener("pointerdown",pointerDown);el.addEventListener("pointermove",pointerMove);el.addEventListener("pointerup",pointerUp);el.addEventListener("pointercancel",pointerUp);el.addEventListener("keydown",e=>{if(checked)return;const n=8;if(!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key))return;e.preventDefault();const r=stage.getBoundingClientRect(),p=current(el);let x=p.left/100*stage.clientWidth,y=p.top/100*stage.clientHeight;if(e.key==="ArrowLeft")x-=n;if(e.key==="ArrowRight")x+=n;if(e.key==="ArrowUp")y-=n;if(e.key==="ArrowDown")y+=n;setPosition(el,x,y);moved.add(el.dataset.part);clearFeedback();update();});});
 document.getElementById("zoomIn").addEventListener("click",()=>{zoom=clamp(+(zoom+.15).toFixed(2),.85,1.75);applyZoom();});
 document.getElementById("zoomOut").addEventListener("click",()=>{zoom=clamp(+(zoom-.15).toFixed(2),.85,1.75);applyZoom();});
