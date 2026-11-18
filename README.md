@@ -9,7 +9,7 @@ Teaching-repo/
 ├── README.md
 ├── activities/
 │   ├── index.html
-│   ├── india-state-capitals/
+│   ├── monument-detectives/\n│   │   └── index.html\n│   ├── india-state-capitals/
 │   │   └── index.html
 │   └── tables/
 │       └── index.html
@@ -29,7 +29,7 @@ Teaching-repo/
 
 | Activity | What students practise | Page |
 |---|---|---|
-| **India State Capitals** | Identify Indian states and their capitals using a map-based activity. | [Open activity](https://arpitabhaumik.github.io/Teaching-repo/activities/india-state-capitals/) |
+| **Monument Detectives** | Identify the Taj Mahal's white marble and the Red Fort's red sandstone, answer a question about Shah Jahan, and write four sentences about each monument. | [Open activity](https://arpitabhaumik.github.io/Teaching-repo/activities/monument-detectives/) |\n| **India State Capitals** | Identify Indian states and their capitals using a map-based activity. | [Open activity](https://arpitabhaumik.github.io/Teaching-repo/activities/india-state-capitals/) |
 | **Times Tables Challenge** | Practise multiplication tables with questions, feedback, and a score summary. | [Open activity](https://arpitabhaumik.github.io/Teaching-repo/activities/tables/) |
 
 ## Adding a new activity
