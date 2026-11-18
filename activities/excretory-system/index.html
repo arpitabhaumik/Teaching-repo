@@ -1,66 +1,90 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f7ff"><title>Build the Excretory System</title>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff"><title>Build the Excretory System</title>
 <style>
-:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f5f7ff}*{box-sizing:border-box}body{margin:0}header{background:linear-gradient(125deg,#172554,#4338ca);color:#fff;padding:24px 18px}header .wrap,main{max-width:1050px;margin:auto}h1{font-size:clamp(1.6rem,4vw,2.25rem);margin:0 0 6px}header p{margin:0;color:#dbeafe;line-height:1.5}.activity-nav{max-width:1050px;margin:auto;padding:14px 16px 0}.activity-nav a{display:inline-block;color:#4338ca;text-decoration:none;font-weight:700;background:#e9edfb;padding:9px 13px;border-radius:10px}main{padding:18px 16px 48px}.panel{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:clamp(15px,3vw,24px);box-shadow:0 8px 24px #1e293b0a}.muted{color:#64748b;line-height:1.55}.layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:18px;align-items:start}.work{background:#f8faff;border:1px solid #dce5f3;border-radius:16px;padding:12px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.zoom{display:flex;align-items:center;gap:7px}.zoom button{padding:7px 11px;min-width:38px}.zoom span{font-size:.82rem;color:#64748b;min-width:42px;text-align:center}.stage{position:relative;width:min(100%,480px);aspect-ratio:400/700;margin:0 auto;border-radius:13px;overflow:hidden;background:linear-gradient(#f7faff,#edf3fb);border:1px solid #dce5f0;touch-action:none;user-select:none}.scene{position:absolute;inset:0;transform-origin:top left}.anatomy{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.part{position:absolute;z-index:2;cursor:grab;touch-action:none;user-select:none;filter:drop-shadow(0 3px 3px #26364d25)}.part svg{width:100%;height:100%;display:block;overflow:visible;pointer-events:none}.part.dragging{z-index:5;cursor:grabbing;filter:drop-shadow(0 8px 8px #26364d45)}.part.locked{cursor:default}.part.kidneys{left:25%;top:31%;width:50%;height:13%}.part.ureters{left:38.75%;top:43.5%;width:22.5%;height:27%}.part.bladder{left:38.75%;top:69.5%;width:22.5%;height:19%}.tray{background:#f8faff;border:1px solid #dce5f3;border-radius:16px;padding:14px}.tray h2{font-size:1rem;margin:0 0 5px}.tray-piece{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #dce5f3;border-radius:12px;padding:9px 10px;margin:10px 0;color:#526078;font-size:.9rem}.swatch{width:40px;height:38px;flex:none}.swatch svg{width:100%;height:100%}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}button{border:0;border-radius:11px;padding:11px 15px;background:#4338ca;color:white;font:inherit;font-weight:750;cursor:pointer}button.secondary{background:#e9edfb;color:#28366c}button:disabled{opacity:.45;cursor:not-allowed}#feedback{display:none;margin-top:13px;padding:13px 15px;border-radius:12px;line-height:1.5}#feedback.show{display:block}#feedback.good{background:#ecfdf3;color:#166534}#feedback.try{background:#fff7ed;color:#9a3412}.organ-key{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.organ-key li{background:#f1f5f9;border-radius:9px;padding:10px;font-size:.9rem}.organ-key strong{display:block;color:#312e81;margin-bottom:3px}.hidden{display:none!important}.smallnote{font-size:.83rem;color:#64748b;line-height:1.45}
-@media(max-width:760px){.layout{grid-template-columns:1fr}.tray{order:2}.tray-pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.tray-piece{display:block;text-align:center;margin:0;padding:8px 4px}.swatch{margin:0 auto 4px}.organ-key{grid-template-columns:1fr}}
-</style></head><body>
-<header><div class="wrap"><h1>🧩 Build the Excretory System</h1><p>Place the three picture pieces in the right positions on the human body — and connect them correctly.</p></div></header>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f5f7ff}*{box-sizing:border-box}body{margin:0}
+header{background:linear-gradient(125deg,#172554,#4338ca);color:white;padding:24px 18px}header .wrap,main{max-width:1080px;margin:auto}h1{font-size:clamp(1.55rem,4vw,2.2rem);margin:0 0 6px}header p{margin:0;color:#dbeafe;line-height:1.5}
+.activity-nav{max-width:1080px;margin:auto;padding:14px 16px 0}.activity-nav a{display:inline-block;color:#4338ca;text-decoration:none;font-weight:700;background:#e9edfb;padding:9px 13px;border-radius:10px}
+main{padding:18px 16px 48px}.panel{background:white;border:1px solid #e2e8f0;border-radius:18px;padding:clamp(15px,3vw,24px);box-shadow:0 8px 24px #1e293b0a}.muted{color:#64748b;line-height:1.55}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}.zoom{display:flex;align-items:center;gap:7px}.zoom button,button{border:0;border-radius:11px;padding:10px 14px;background:#4338ca;color:white;font:inherit;font-weight:750;cursor:pointer}.zoom button{padding:7px 11px;min-width:38px}.zoom button.secondary,button.secondary{background:#e9edfb;color:#28366c}.zoom span{font-size:.83rem;color:#64748b;min-width:43px;text-align:center}
+.board{background:#f5f8fd;border:1px solid #dce5f3;border-radius:16px;padding:10px;overflow:hidden}.viewport{height:min(76vh,790px);min-height:540px;max-width:620px;margin:auto;overflow:hidden;border-radius:12px;background:linear-gradient(180deg,#f8fbff,#edf3fa);touch-action:none}
+svg#puzzle{display:block;width:100%;height:100%;touch-action:none;user-select:none}.piece{cursor:grab;touch-action:none;outline:none}.piece:focus-visible{filter:drop-shadow(0 0 5px #4f46e5)}.piece.dragging{cursor:grabbing;filter:drop-shadow(0 5px 6px #1e293b55)}.piece.placed{cursor:grab}
+.tray-label{font-weight:750;margin:16px 0 8px}.piece-help{color:#64748b;font-size:.9rem;margin:0 0 8px}.piece-list{display:flex;gap:10px;flex-wrap:wrap}.piece-chip{background:#fff;border:1px solid #dce5f3;border-radius:12px;padding:10px 15px;min-width:90px;text-align:center;font-weight:700;color:#475569}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}#feedback{display:none;margin-top:13px;padding:13px 15px;border-radius:12px;line-height:1.5}#feedback.show{display:block}#feedback.good{background:#ecfdf3;color:#166534}#feedback.try{background:#fff7ed;color:#9a3412}
+.organ-key{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.organ-key li{background:#f1f5f9;border-radius:9px;padding:10px;font-size:.9rem}.organ-key strong{display:block;color:#312e81;margin-bottom:3px}.hidden{display:none!important}.smallnote{font-size:.82rem;color:#64748b;line-height:1.5;margin-top:14px}
+@media(max-width:620px){.viewport{height:68vh;min-height:490px}.organ-key{grid-template-columns:1fr}.piece-chip{flex:1}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>🧩 Build the Excretory System</h1><p>Fit the three picture pieces together in the correct places inside the human body.</p></div></header>
 <nav class="activity-nav"><a href="../">← Back to all activities</a></nav>
-<main><section class="panel"><h2>Assemble the system</h2><p class="muted">Drag each unlabelled piece onto the body. The parts must connect to one another <b>and</b> sit in the correct place in the body. Use the zoom buttons to get a closer look. The organ names will be revealed only after you check your answer.</p>
-<div class="layout"><div class="work"><div class="toolbar"><b>Full-body view</b><div class="zoom"><button type="button" id="zoomOut" class="secondary" aria-label="Zoom out">−</button><span id="zoomLevel">100%</span><button type="button" id="zoomIn" class="secondary" aria-label="Zoom in">+</button><button type="button" id="zoomReset" class="secondary">Reset zoom</button></div></div>
-<div class="stage" id="stage" aria-label="Full front view of a human body. Arrange the three urinary system pieces in their correct anatomical positions.">
-<div class="scene" id="scene">
-<svg class="anatomy" viewBox="0 0 400 700" preserveAspectRatio="none" aria-hidden="true">
-<!-- Full human outline, front view -->
-<circle cx="200" cy="55" r="39" fill="#e8edf4" stroke="#b9c6d7" stroke-width="3"/>
-<path d="M178 91L178 112Q153 118 129 133L83 157Q65 168 70 193L91 287Q95 304 109 300Q121 296 117 279L103 196L132 181L140 300Q143 331 151 354L145 390Q143 410 158 420L180 435L169 650Q168 669 184 671Q201 673 204 653L215 449L224 653Q227 673 244 671Q260 669 259 650L242 435L264 420Q279 410 277 390L260 354Q267 331 270 300L268 181L297 196L283 279Q279 296 291 300Q305 304 309 287L330 193Q335 168 317 157L271 133Q247 118 222 112L222 91Z" fill="#e8edf4" stroke="#b9c6d7" stroke-width="3" stroke-linejoin="round"/>
-<path d="M178 94Q200 106 222 94" fill="none" stroke="#c7d1df" stroke-width="3"/>
-<!-- anatomical landmarks: rib cage and spine -->
-<path d="M200 133V369" stroke="#c4cfdd" stroke-width="8" stroke-linecap="round" opacity=".7"/>
-<g fill="none" stroke="#c4cfdd" stroke-width="3" opacity=".8">
-<path d="M194 151Q159 137 132 159M206 151Q241 137 268 159M194 169Q157 154 128 178M206 169Q243 154 272 178M194 188Q158 174 132 197M206 188Q242 174 268 197"/>
-<path d="M194 207Q163 196 139 216M206 207Q237 196 261 216"/>
+<main><section class="panel">
+<h2>Assemble the system</h2>
+<p class="muted">Drag pieces A, B and C from the side of the body into place. They must connect correctly <b>and</b> be in the correct anatomical positions. Use the zoom controls to inspect the body more closely. Organ names stay hidden until you check your answer.</p>
+<div class="toolbar"><b>Front view of the human body</b><div class="zoom"><button id="zoomOut" class="secondary" aria-label="Zoom out">−</button><span id="zoomLevel">100%</span><button id="zoomIn" class="secondary" aria-label="Zoom in">+</button><button id="zoomReset" class="secondary">Reset</button></div></div>
+<div class="board"><div class="viewport" id="viewport">
+<svg id="puzzle" viewBox="0 0 600 900" role="img" aria-label="Front view of a human body. Three unlabelled urinary system pieces are scattered around the abdomen and pelvis.">
+<defs>
+<linearGradient id="skin" x1="0" x2="1"><stop stop-color="#f0d8c7"/><stop offset=".5" stop-color="#f8e7dc"/><stop offset="1" stop-color="#efd4c2"/></linearGradient>
+<linearGradient id="kidney" x1="0" x2="1"><stop stop-color="#a94750"/><stop offset=".5" stop-color="#c66a6d"/><stop offset="1" stop-color="#99414a"/></linearGradient>
+<linearGradient id="bladder" x1="0" x2="1"><stop stop-color="#d77d8b"/><stop offset=".5" stop-color="#eea0a8"/><stop offset="1" stop-color="#cf7180"/></linearGradient>
+</defs>
+<!-- Human silhouette: neutral, proportionate front view -->
+<g id="body" fill="url(#skin)" stroke="#c9b4a7" stroke-width="3.5" stroke-linejoin="round">
+<circle cx="300" cy="83" r="48"/>
+<path d="M263 139 Q222 145 185 167 L125 197 Q102 208 109 238 L142 364 Q148 387 166 382 Q183 377 177 356 L151 240 L199 222 L207 370 Q210 409 224 449 L212 493 Q205 522 226 540 L259 563 L245 832 Q243 865 270 870 Q295 874 300 843 L310 575 L322 843 Q327 874 352 870 Q379 865 375 832 L341 563 L374 540 Q395 522 388 493 L376 449 Q390 409 393 370 L401 222 L449 240 L423 356 Q417 377 434 382 Q452 387 458 364 L491 238 Q498 208 475 197 L415 167 Q378 145 337 139 L326 132 L274 132Z"/>
 </g>
-<!-- pelvic landmarks -->
-<path d="M151 349Q170 369 190 359L200 350L210 359Q230 369 249 349M151 349Q146 380 169 399L190 414M249 349Q254 380 231 399L210 414" fill="none" stroke="#c4cfdd" stroke-width="4" opacity=".85"/>
-<!-- neutral central abdominal guide -->
-<path d="M142 218Q200 236 258 218" stroke="#d3dce8" stroke-width="2" fill="none"/>
-<path d="M151 414L145 475M249 414L255 475" stroke="#c4cfdd" stroke-width="3" opacity=".65"/>
+<!-- understated anatomical landmarks: rib cage, spine and pelvis -->
+<g fill="none" stroke="#c7b7ad" stroke-width="3" opacity=".72">
+<path d="M300 177V482" stroke-width="8" opacity=".55"/>
+<path d="M292 196Q239 170 194 204M308 196Q361 170 406 204M292 225Q237 197 190 232M308 225Q363 197 410 232M292 254Q243 229 199 260M308 254Q357 229 401 260M292 283Q250 260 208 290M308 283Q350 260 392 290"/>
+<path d="M218 444Q251 478 284 461L300 449L316 461Q349 478 382 444M218 444Q215 492 257 523L285 545M382 444Q385 492 343 523L315 545"/>
+</g>
+<!-- Puzzle pieces: deliberately scattered around the correct area. Their size is drawn in the same SVG coordinate system as the body. -->
+<g class="piece" data-piece="kidneys" transform="translate(105 430)" tabindex="0" role="button" aria-label="Picture piece A, move with arrow keys">
+<path d="M-31 -48 C-67 -62 -91 -34 -84 2 C-78 39 -43 52 -17 25 C-2 9 -14 -5 -25 -18 C-36 -30 -11 -41 -31 -48Z" fill="url(#kidney)" stroke="#793943" stroke-width="5"/>
+<path d="M31 -48 C67 -62 91 -34 84 2 C78 39 43 52 17 25 C2 9 14 -5 25 -18 C36 -30 11 -41 31 -48Z" fill="url(#kidney)" stroke="#793943" stroke-width="5"/>
+<path d="M-19 -1Q-8 -8 0 10M19 -1Q8 -8 0 10" fill="none" stroke="#f0b3a5" stroke-width="9" stroke-linecap="round"/>
+</g>
+<g class="piece" data-piece="ureters" transform="translate(490 450)" tabindex="0" role="button" aria-label="Picture piece B, move with arrow keys">
+<path d="M-29 -65 C-28 -23 -20 8 -12 35 C-5 61 -5 87 -4 112 M29 -65 C28 -23 20 8 12 35 C5 61 5 87 4 112" fill="none" stroke="#b97545" stroke-width="13" stroke-linecap="round"/>
+<path d="M-29 -65 C-28 -23 -20 8 -12 35 C-5 61 -5 87 -4 112 M29 -65 C28 -23 20 8 12 35 C5 61 5 87 4 112" fill="none" stroke="#f0c59b" stroke-width="5" stroke-linecap="round"/>
+</g>
+<g class="piece" data-piece="bladder" transform="translate(490 660)" tabindex="0" role="button" aria-label="Picture piece C, move with arrow keys">
+<path d="M-43 -35 Q-43 -14 -57 4 C-78 35 -62 78 -31 91 Q0 106 31 91 C62 78 78 35 57 4 Q43 -14 43 -35Z" fill="url(#bladder)" stroke="#984553" stroke-width="5"/>
+<path d="M-40 -31Q0 -19 40 -31" fill="none" stroke="#f6c2c8" stroke-width="4"/>
+<path d="M0 88V139" fill="none" stroke="#b97545" stroke-width="15" stroke-linecap="round"/>
+<path d="M0 88V139" fill="none" stroke="#f0c59b" stroke-width="6" stroke-linecap="round"/>
+</g>
 </svg>
-<!-- Kidney pair, with medial hila pointing toward ureters -->
-<div class="part kidneys" data-part="kidneys" role="button" tabindex="0" aria-label="Unlabelled picture piece A">
-<svg viewBox="0 0 200 100"><path d="M69 9C38 -1 12 22 17 56C21 89 53 101 77 78C93 63 82 50 72 40C63 30 86 16 69 9Z" fill="#a94e54" stroke="#71353e" stroke-width="4"/><path d="M131 9C162 -1 188 22 183 56C179 89 147 101 123 78C107 63 118 50 128 40C137 30 114 16 131 9Z" fill="#a94e54" stroke="#71353e" stroke-width="4"/><path d="M76 49Q88 45 96 60M124 49Q112 45 104 60" fill="none" stroke="#f0b6a9" stroke-width="8" stroke-linecap="round"/><path d="M96 58L100 67L104 58" fill="none" stroke="#f6d2b7" stroke-width="5" stroke-linecap="round"/></svg></div>
-<!-- Paired ureters: top ends align with renal hila, lower ends meet bladder inlets -->
-<div class="part ureters" data-part="ureters" role="button" tabindex="0" aria-label="Unlabelled picture piece B">
-<svg viewBox="0 0 90 190"><path d="M18 4C18 35 24 56 31 79C38 102 37 130 39 181M72 4C72 35 66 56 59 79C52 102 53 130 51 181" fill="none" stroke="#bd794b" stroke-width="12" stroke-linecap="round"/><path d="M18 4C18 35 24 56 31 79C38 102 37 130 39 181M72 4C72 35 66 56 59 79C52 102 53 130 51 181" fill="none" stroke="#f0c59d" stroke-width="5" stroke-linecap="round"/></svg></div>
-<!-- Bladder and urethra combined as one textbook-style puzzle piece -->
-<div class="part bladder" data-part="bladder" role="button" tabindex="0" aria-label="Unlabelled picture piece C">
-<svg viewBox="0 0 90 135"><path d="M20 5Q20 18 12 28C-1 46 5 79 24 88Q45 101 66 88C85 79 91 46 78 28Q70 18 70 5" fill="#d98291" stroke="#934253" stroke-width="4"/><path d="M20 7Q45 14 70 7" fill="none" stroke="#f4bac2" stroke-width="3"/><path d="M45 88V132" stroke="#bd794b" stroke-width="14" stroke-linecap="round"/><path d="M45 88V132" stroke="#f0c59d" stroke-width="6" stroke-linecap="round"/></svg></div>
 </div></div>
-<div class="actions"><button id="check" disabled>Check my assembly</button><button class="secondary" id="reset">Start again</button></div><div id="feedback" role="status" aria-live="polite"></div><ul class="organ-key hidden" id="organKey"></ul>
-</div><aside class="tray"><h2>Picture pieces</h2><p class="smallnote">The pieces are labelled only A, B and C. Move all three from their starting positions on the body.</p><div class="tray-pieces"><div class="tray-piece"><div class="swatch"><svg viewBox="0 0 200 100"><path d="M69 9C38 -1 12 22 17 56C21 89 53 101 77 78C93 63 82 50 72 40C63 30 86 16 69 9ZM131 9C162 -1 188 22 183 56C179 89 147 101 123 78C107 63 118 50 128 40C137 30 114 16 131 9Z" fill="#a94e54" stroke="#71353e" stroke-width="4"/></svg></div>Piece A</div><div class="tray-piece"><div class="swatch"><svg viewBox="0 0 90 190"><path d="M18 4C18 35 24 56 31 79C38 102 37 130 39 181M72 4C72 35 66 56 59 79C52 102 53 130 51 181" fill="none" stroke="#bd794b" stroke-width="12" stroke-linecap="round"/></svg></div>Piece B</div><div class="tray-piece"><div class="swatch"><svg viewBox="0 0 90 135"><path d="M20 5Q20 18 12 28C-1 46 5 79 24 88Q45 101 66 88C85 79 91 46 78 28Q70 18 70 5" fill="#d98291" stroke="#934253" stroke-width="4"/><path d="M45 88V132" stroke="#bd794b" stroke-width="14" stroke-linecap="round"/></svg></div>Piece C</div></div><p class="smallnote">You can zoom in for careful placement and zoom out to see the whole body.</p></aside></div>
+<div class="tray-label">Puzzle pieces</div><p class="piece-help">A, B and C are unlabelled. Drag each piece into the body; on a keyboard, select a piece and use the arrow keys.</p>
+<div class="piece-list"><div class="piece-chip">Piece A</div><div class="piece-chip">Piece B</div><div class="piece-chip">Piece C</div></div>
+<div class="actions"><button id="check">Check my assembly</button><button class="secondary" id="reset">Start again</button></div>
+<div id="feedback" role="status" aria-live="polite"></div><ul class="organ-key hidden" id="organKey"></ul>
+<p class="smallnote">Anatomy reference: NIDDK (National Institutes of Health), front-view urinary tract illustrations. The body silhouette and puzzle artwork here are original simplified teaching illustrations based on standard anatomical relationships.</p>
 </section></main>
 <script>
-const stage=document.getElementById("stage"),scene=document.getElementById("scene"),parts=[...document.querySelectorAll(".part")],check=document.getElementById("check"),feedback=document.getElementById("feedback"),progress=document.getElementById("progress");
-const initial={kidneys:{left:5,top:8},ureters:{left:70,top:45},bladder:{left:7,top:70}};
-const target={kidneys:{left:25,top:31},ureters:{left:38.75,top:43.5},bladder:{left:38.75,top:69.5}};
-let zoom=1,active=null,offset={x:0,y:0},checked=false,moved=new Set();
-function applyZoom(){scene.style.transform="scale("+zoom+")";document.getElementById("zoomLevel").textContent=Math.round(zoom*100)+"%";}
-function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
-function setPosition(el,x,y){const r=stage.getBoundingClientRect(),scale=zoom;const w=el.offsetWidth,h=el.offsetHeight;el.style.left=clamp(x,0,stage.clientWidth-w)+"px";el.style.top=clamp(y,0,stage.clientHeight-h)+"px";}
-function current(el){return{left:parseFloat(el.style.left)/stage.clientWidth*100,top:parseFloat(el.style.top)/stage.clientHeight*100};}
-function isCorrectPosition(el){const p=current(el),t=target[el.dataset.part];return Math.abs(p.left-t.left)<=1&&Math.abs(p.top-t.top)<=1;}
-function allCorrect(){return parts.every(isCorrectPosition);}
-function update(){progress.textContent=moved.size+" of 3 pieces moved";check.disabled=checked||moved.size!==3;}
-function clearFeedback(){feedback.className="";feedback.textContent="";}
-function pointerDown(e){if(checked)return;active=e.currentTarget;const r=active.getBoundingClientRect();offset={x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom};active.classList.add("dragging");active.setPointerCapture(e.pointerId);e.preventDefault();}
-function pointerMove(e){if(!active)return;const r=stage.getBoundingClientRect();setPosition(active,(e.clientX-r.left)/zoom-offset.x,(e.clientY-r.top)/zoom-offset.y);moved.add(active.dataset.part);clearFeedback();update();}
-function pointerUp(){if(!active)return;const el=active;el.classList.remove("dragging");active=null;const p=current(el),t=target[el.dataset.part];if(Math.abs(p.left-t.left)<=4.5&&Math.abs(p.top-t.top)<=4.5){el.style.left=t.left+"%";el.style.top=t.top+"%";}update();}
-parts.forEach(el=>{const p=initial[el.dataset.part];el.style.left=p.left+"%";el.style.top=p.top+"%";el.addEventListener("pointerdown",pointerDown);el.addEventListener("pointermove",pointerMove);el.addEventListener("pointerup",pointerUp);el.addEventListener("pointercancel",pointerUp);el.addEventListener("keydown",e=>{if(checked)return;const n=8;if(!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key))return;e.preventDefault();const r=stage.getBoundingClientRect(),p=current(el);let x=p.left/100*stage.clientWidth,y=p.top/100*stage.clientHeight;if(e.key==="ArrowLeft")x-=n;if(e.key==="ArrowRight")x+=n;if(e.key==="ArrowUp")y-=n;if(e.key==="ArrowDown")y+=n;setPosition(el,x,y);moved.add(el.dataset.part);clearFeedback();update();});});
-document.getElementById("zoomIn").addEventListener("click",()=>{zoom=clamp(+(zoom+.15).toFixed(2),.85,1.75);applyZoom();});
-document.getElementById("zoomOut").addEventListener("click",()=>{zoom=clamp(+(zoom-.15).toFixed(2),.85,1.75);applyZoom();});
-document.getElementById("zoomReset").addEventListener("click",()=>{zoom=1;applyZoom();});
-check.addEventListener("click",()=>{if(moved.size!==3)return;checked=true;parts.forEach(p=>p.classList.add("locked"));const good=allCorrect();feedback.className="show "+(good?"good":"try");feedback.innerHTML=good?"<b>Excellent! All three pieces are connected and positioned correctly.</b>":"<b>Not quite yet.</b> The pieces must be joined in the correct order and placed in the right anatomical locations. Check where the kidneys sit, follow the ureters down, and place the bladder in the pelvis. Press Start again to try once more.";if(good){document.getElementById("organKey").innerHTML="<li><strong>Kidneys</strong>Two organs on either side of the spine that filter blood and make urine</li><li><strong>Ureters</strong>Two tubes that carry urine down to the bladder</li><li><strong>Urinary bladder and urethra</strong>The bladder stores urine; the urethra carries it out of the body</li>";document.getElementById("organKey").classList.remove("hidden");}else{document.getElementById("organKey").classList.add("hidden");}check.disabled=true;});
-document.getElementById("reset").addEventListener("click",()=>{checked=false;moved.clear();parts.forEach(el=>{el.classList.remove("locked","dragging");const p=initial[el.dataset.part];el.style.left=p.left+"%";el.style.top=p.top+"%";});document.getElementById("organKey").classList.add("hidden");document.getElementById("organKey").innerHTML="";clearFeedback();update();});
-applyZoom();update();
-</script></body></html>
+const svg=document.getElementById("puzzle"),viewport=document.getElementById("viewport"),pieces=[...svg.querySelectorAll(".piece")];
+const starts={kidneys:[105,430],ureters:[490,450],bladder:[490,660]};
+const targets={kidneys:[300,335],ureters:[300,430],bladder:[300,535]};
+let zoom=1,drag=null,checked=false,placed=new Set();
+function point(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+function position(el){const m=el.transform.baseVal.consolidate();return [m.matrix.e,m.matrix.f];}
+function move(el,x,y){el.setAttribute("transform",`translate(${x} ${y})`);}
+function setZoom(){const w=600/zoom,h=900/zoom;svg.setAttribute("viewBox",`${300-w/2} ${450-h/2} ${w} ${h}`);document.getElementById("zoomLevel").textContent=Math.round(zoom*100)+"%";}
+function setFeedback(text,kind){const f=document.getElementById("feedback");f.className="show "+kind;f.textContent=text;}
+function start(e){if(checked)return;const el=e.currentTarget;drag={el,dx:point(e).x-position(el)[0],dy:point(e).y-position(el)[1]};el.classList.add("dragging");el.setPointerCapture(e.pointerId);e.preventDefault();}
+function dragMove(e){if(!drag)return;const p=point(e);move(drag.el,p.x-drag.dx,p.y-drag.dy);placed.add(drag.el.dataset.piece);document.getElementById("feedback").className=""; }
+function end(){if(!drag)return;const el=drag.el;el.classList.remove("dragging");const p=position(el),t=targets[el.dataset.piece],d=Math.hypot(p[0]-t[0],p[1]-t[1]);if(d<65){move(el,...t);el.classList.add("placed");}drag=null;}
+pieces.forEach(el=>{const key=el.dataset.piece;move(el,...starts[key]);el.addEventListener("pointerdown",start);el.addEventListener("pointermove",dragMove);el.addEventListener("pointerup",end);el.addEventListener("pointercancel",end);el.addEventListener("keydown",e=>{if(checked)return;const [x,y]=position(el),step=e.shiftKey?20:8;let nx=x,ny=y;if(e.key==="ArrowLeft")nx-=step;else if(e.key==="ArrowRight")nx+=step;else if(e.key==="ArrowUp")ny-=step;else if(e.key==="ArrowDown")ny+=step;else return;e.preventDefault();move(el,nx,ny);placed.add(key);});});
+document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(1.8,+(zoom+.15).toFixed(2));setZoom();};
+document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(1,+(zoom-.15).toFixed(2));setZoom();};
+document.getElementById("zoomReset").onclick=()=>{zoom=1;setZoom();};
+document.getElementById("check").onclick=()=>{if(checked)return;const good=pieces.every(el=>{const p=position(el),t=targets[el.dataset.piece];return Math.hypot(p[0]-t[0],p[1]-t[1])<=5;});checked=true;pieces.forEach(el=>el.classList.add("placed"));if(good){setFeedback("Excellent! The three pieces are connected and placed in their correct anatomical positions.","good");document.getElementById("organKey").innerHTML="<li><strong>Kidneys</strong>Filter the blood and make urine</li><li><strong>Ureters</strong>Carry urine from the kidneys to the bladder</li><li><strong>Urinary bladder and urethra</strong>The bladder stores urine; the urethra carries urine out of the body</li>";document.getElementById("organKey").classList.remove("hidden");}else{setFeedback("Not quite yet. The pieces must connect in the correct sequence and sit in the correct places: kidneys in the upper abdomen, ureters descending to the pelvis, and bladder with urethra in the lower pelvis. Choose Start again to try once more.","try");}document.getElementById("check").disabled=true;};
+document.getElementById("reset").onclick=()=>{checked=false;placed.clear();pieces.forEach(el=>{move(el,...starts[el.dataset.piece]);el.classList.remove("placed","dragging");});document.getElementById("check").disabled=false;document.getElementById("organKey").classList.add("hidden");document.getElementById("organKey").innerHTML="";document.getElementById("feedback").className="";};
+setZoom();
+</script>
+</body></html>
